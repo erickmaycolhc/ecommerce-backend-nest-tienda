@@ -12,7 +12,7 @@ export class ProductosServices {
 
   async findAllProductos(): Promise<ProductoDTO[]> {
     const resultQuery = await this.dataSource.query(
-      `SELECT id, nombre, precio_de_venta, sub_grupo_id FROM e_commerce_productos`,
+      `SELECT * FROM e_commerce_productos`,
     );
     return resultQuery;
   }

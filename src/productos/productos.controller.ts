@@ -19,11 +19,6 @@ export class ProductosController {
     return this.productosService.findAllProductos();
   }
 
-  @Get('/prueba')
-  prueba() {
-    return 'Hola';
-  }
-
   @Get('/:id')
   findByIdProducto(@Param('id') id: number) {
     return this.productosService.findByIdProducto(id);
