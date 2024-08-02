@@ -1,17 +1,7 @@
-import {
-  Body,
-  HttpException,
-  HttpStatus,
-  Injectable,
-  Param,
-} from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectDataSource } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
-import {
-  BoletaDTO,
-  Venta_de_pedidoDTO,
-  VentaDto,
-} from './dto/Venta_de_pedidoDTO';
+import { Venta_de_pedidoDTO, VentaDto } from './dto/Venta_de_pedidoDTO';
 import { ProductoDTO } from 'src/productos/dto/ProductoDTO';
 import { ResultSetHeader } from 'mysql2';
 
@@ -41,65 +31,6 @@ export class Venta_de_pedidosService {
       throw new Error('Pedido no encontrado');
     }
 
-    return resultQuery;
-  }
-
-  // async insertNewVenta_de_pedido(
-  //   venta_de_pedidoDTO: Venta_de_pedidoDTO,
-  // ): Promise<void> {
-  //   const { id_orden, usuario_id } = venta_de_pedidoDTO;
-  //   const fecha_creacion = venta_de_pedidoDTO.fecha_creacion || new Date();
-
-  //   // cuales son los productos
-
-  //   const query = `INSERT INTO  e_commerce_venta_de_pedidos(id_orden, fecha_creacion, usuario_id) VALUES (?, ?, ?)`;
-
-  //   return await this.dataSource.query(query, [
-  //     id_orden,
-  //     fecha_creacion,
-  //     usuario_id,
-  //   ]);
-  // }
-
-  //saber cuantos productos tiene la orden y su precio
-  // agregar columna con la operación precio_venta_total
-  // async precio_venta_total(id_orden: number) {
-  //   const cantidadDeProductos = await this.dataSource.query(
-  //     `SELECT id_orden, producto_id, cantidad, precio_venta FROM e_commerce_detalle_ventas where id_orden = ?`,
-  //     [id_orden],
-  //   );
-
-  //   //calcular la suma total
-  //   const total = cantidadDeProductos.reduce((sum, producto) => {
-  //     const cantidad = Number(producto.cantidad) || 0; //conversión a number
-  //     const precio_venta = Number(producto.precio_venta) || 0;
-
-  //     return sum + cantidad * precio_venta;
-  //   }, 0);
-  //   console.log('Total =>', total);
-  //   return total;
-  // }
-
-  // async updateVenta_de_pedido(
-  //   id_orden: number,
-  //   venta_de_pedidoDTO: Venta_de_pedidoDTO,
-  // ): Promise<Venta_de_pedidoDTO> {
-  //   const { usuario_id } = venta_de_pedidoDTO;
-  //   const fecha_creacion = venta_de_pedidoDTO.fecha_creacion || new Date();
-  //   const query = `UPDATE  e_commerce_venta_de_pedidos set fecha_creacion = ? , usuario_id = ? where id_orden = ?`;
-
-  //   return await this.dataSource.query(query, [
-  //     fecha_creacion,
-  //     usuario_id,
-  //     id_orden,
-  //   ]);
-  // }
-
-  async deleteVenta_de_pedido(id: number): Promise<void> {
-    const resultQuery = await this.dataSource.query(
-      `DELETE from  e_commerce_venta_de_pedidos WHERE id = ?`,
-      [id],
-    );
     return resultQuery;
   }
 
@@ -197,5 +128,13 @@ export class Venta_de_pedidosService {
       },
     };
     return boletaFinal;
+  }
+
+  async deleteVenta_de_pedido(id: number): Promise<void> {
+    const resultQuery = await this.dataSource.query(
+      `DELETE from  e_commerce_venta_de_pedidos WHERE id = ?`,
+      [id],
+    );
+    return resultQuery;
   }
 }

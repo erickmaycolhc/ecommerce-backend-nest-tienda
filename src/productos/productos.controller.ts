@@ -19,6 +19,16 @@ export class ProductosController {
     return this.productosService.findAllProductos();
   }
 
+  @Get('/grupo/:url')
+  findAllProductosPorGruposUrl(@Param('url') url: string) {
+    return this.productosService.findAllProductosPorGruposUrl(url);
+  }
+
+  @Get('/sub_grupo/:url')
+  findAllProductosPorSub_grupoUrl(@Param('url') url: string) {
+    return this.productosService.findAllProductosPorSub_grupoUrl(url);
+  }
+
   @Get('/:id')
   findByIdProducto(@Param('id') id: number) {
     return this.productosService.findByIdProducto(id);

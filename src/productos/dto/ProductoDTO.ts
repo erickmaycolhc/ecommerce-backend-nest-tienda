@@ -5,4 +5,5 @@ export interface ProductoDTO {
   imagen: string;
   cantidad?: string;
   sub_grupo_id: number;
+  url: string;
 }

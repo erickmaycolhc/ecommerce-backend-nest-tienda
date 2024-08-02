@@ -26,20 +26,20 @@ export class Sub_GruposService {
   }
 
   async insertNewSub_grupo(sub_grupoDTO: Sub_GrupoDTO): Promise<void> {
-    const { nombre, grupo_id } = sub_grupoDTO;
-    const query = `INSERT INTO e_commerce_sub_grupos(nombre, grupo_id) VALUES (?, ?)`;
+    const { nombre, grupo_id, url } = sub_grupoDTO;
+    const query = `INSERT INTO e_commerce_sub_grupos(nombre, grupo_id, url) VALUES (?, ?, ?)`;
 
-    return await this.dataSource.query(query, [nombre, grupo_id]);
+    return await this.dataSource.query(query, [nombre, grupo_id, url]);
   }
 
   async updateSub_grupo(
     id: number,
     sub_grupoDTO: Sub_GrupoDTO,
   ): Promise<Sub_GrupoDTO> {
-    const { nombre, grupo_id } = sub_grupoDTO;
-    const query = `UPDATE e_commerce_sub_grupos set nombre = ?, grupo_id = ? where id = ?`;
+    const { nombre, grupo_id, url } = sub_grupoDTO;
+    const query = `UPDATE e_commerce_sub_grupos set nombre = ?, grupo_id = ?, url = ? where id = ?`;
 
-    return await this.dataSource.query(query, [nombre, grupo_id, id]);
+    return await this.dataSource.query(query, [nombre, grupo_id, url, id]);
   }
 
   async deleteSub_grupo(id: number): Promise<void> {

@@ -26,17 +26,17 @@ export class GruposService {
   }
 
   async insertNewGrupo(grupoDTO: GrupoDTO): Promise<void> {
-    const { nombre } = grupoDTO;
-    const query = `INSERT INTO e_commerce_grupos(nombre) VALUES (?)`;
+    const { nombre, url } = grupoDTO;
+    const query = `INSERT INTO e_commerce_grupos(nombre, url) VALUES (?, ?)`;
 
-    return await this.dataSource.query(query, [nombre]);
+    return await this.dataSource.query(query, [nombre, url]);
   }
 
   async updateGrupo(id: number, grupoDTO: GrupoDTO): Promise<GrupoDTO> {
-    const { nombre } = grupoDTO;
-    const query = `UPDATE e_commerce_grupos set nombre = ? where id = ?`;
+    const { nombre, url } = grupoDTO;
+    const query = `UPDATE e_commerce_grupos set nombre = ?, url = ? where id = ?`;
 
-    return await this.dataSource.query(query, [nombre, id]);
+    return await this.dataSource.query(query, [nombre, url, id]);
   }
 
   async deleteGrupo(id: number): Promise<void> {
