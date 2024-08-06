@@ -24,7 +24,7 @@ export interface VentaDto {
 export interface BoletaDTO {
   boleta: {
     productos: ProductosDTO[];
-    precio_venta_total: TotalVentaDTO;
+    total_compra: number;
   };
 }
 
